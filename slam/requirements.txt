@@ -1,0 +1,37 @@
+# SLAM / monocular depth + fusion pipeline environment
+# Install PyTorch first with the CUDA build matching your driver, e.g.:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+# then:
+#   pip install -r slam/requirements.txt
+
+# Core
+numpy
+scipy
+opencv-python
+opencv-contrib-python   # SIFT/ORB feature detectors + matchers for DIY visual odometry
+open3d                  # TSDF fusion, point cloud / mesh utilities, visualization
+matplotlib
+tqdm
+pyyaml
+
+# Camera pose estimation
+pycolmap                # Python bindings for COLMAP (SfM poses + sparse points)
+# hloc: install from source — https://github.com/cvg/Hierarchical-Localization
+#   (optional upgrade over vanilla COLMAP matching for low-texture indoor scenes)
+
+# Monocular depth
+transformers             # HuggingFace hub access for Depth Anything V2 checkpoints
+timm                     # backbone dependency for several depth models
+# Metric3D: install from source — https://github.com/YvanYin/Metric3D
+
+# Bundle adjustment / pose graph optimization (for the DIY visual odometry backend)
+g2o-python               # or: pip install gtsam
+# gtsam                  # alternative to g2o, pick one
+
+# Optional: 3D visualization / debugging
+rerun-sdk                # trajectory + point cloud + camera frustum visualization
+viser                    # lightweight 3D web viewer
+
+# Optional: semantics extension
+# segment-anything-2     # https://github.com/facebookresearch/sam2
+# ultralytics            # YOLO-World for open-vocabulary 2D detection

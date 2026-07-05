@@ -1,0 +1,57 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+.mypy_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- Conda ---
+.conda/
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Editors ---
+.vscode/
+.idea/
+
+# --- Data & large artifacts (track selectively via Git LFS instead) ---
+data/raw_videos/*
+!data/raw_videos/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Model checkpoints / weights
+*.pth
+*.ckpt
+*.safetensors
+checkpoints/
+
+# COLMAP working directories (databases, sparse/dense reconstructions)
+**/colmap_ws/
+*.db
+
+# Reconstruction outputs (large binary artifacts — keep a few curated examples via LFS)
+outputs/meshes/*
+!outputs/meshes/.gitkeep
+outputs/splats/*
+!outputs/splats/.gitkeep
+outputs/videos/*
+!outputs/videos/.gitkeep
+
+# Nerfstudio run outputs
+nerfstudio/outputs/
+wandb/
+runs/
+logs/
+
+# CUDA build artifacts (gsplat / 3DGS JIT compilation)
+*.so
+build/
+*.egg

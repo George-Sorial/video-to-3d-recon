@@ -1,0 +1,30 @@
+# 3D Gaussian Splatting pipeline environment
+# Install PyTorch first with the CUDA build matching your driver, e.g.:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+# then either:
+#
+#   Option A (recommended — highest level, least glue code):
+#     pip install nerfstudio
+#     # ships gsplat as its rasterization backend + splatfacto method + COLMAP wrapper
+#     # + a built-in web viewer
+#
+#   Option B (more control, train your own loop):
+#     pip install -r gaussian_splatting/requirements.txt
+#     pip install git+https://github.com/nerfstudio-project/gsplat.git
+
+numpy
+opencv-python
+open3d
+plyfile                  # reading/writing .ply gaussian splat files
+tqdm
+pyyaml
+
+# Camera pose estimation (shared step with slam/, can reuse the same COLMAP run)
+pycolmap
+
+# Optional: semantics extension for splats (e.g. Gaussian Grouping-style approaches)
+# segment-anything-2
+
+# Note: the original Inria 3DGS reference repo (custom CUDA rasterizer) is a separate,
+# non-commercial-licensed install if you want to study/compare against it directly:
+#   https://github.com/graphdeco-inria/gaussian-splatting
