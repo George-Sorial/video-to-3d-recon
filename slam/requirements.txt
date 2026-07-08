@@ -1,37 +1,28 @@
-# SLAM / monocular depth + fusion pipeline environment
-# Install PyTorch first with the CUDA build matching your driver, e.g.:
+# SLAM / monocular depth + fusion pipeline.
+#
+# Install PyTorch FIRST with the CUDA build matching your driver, e.g. for CUDA 12.1:
 #   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
 # then:
 #   pip install -r slam/requirements.txt
+#
+# COLMAP itself is a separate native install (not pip) — download the CUDA
+# Windows build from https://github.com/colmap/colmap/releases and put it on PATH.
 
-# Core
+# Core geometry / IO
 numpy
 scipy
 opencv-python
-opencv-contrib-python   # SIFT/ORB feature detectors + matchers for DIY visual odometry
-open3d                  # TSDF fusion, point cloud / mesh utilities, visualization
-matplotlib
+open3d                  # TSDF fusion, mesh IO, visualization
+pillow
 tqdm
-pyyaml
 
-# Camera pose estimation
-pycolmap                # Python bindings for COLMAP (SfM poses + sparse points)
-# hloc: install from source — https://github.com/cvg/Hierarchical-Localization
-#   (optional upgrade over vanilla COLMAP matching for low-texture indoor scenes)
+# Camera poses
+pycolmap                # used for model summaries + picking the largest model
 
-# Monocular depth
-transformers             # HuggingFace hub access for Depth Anything V2 checkpoints
-timm                     # backbone dependency for several depth models
-# Metric3D: install from source — https://github.com/YvanYin/Metric3D
+# Monocular depth (Depth Anything V2 via HuggingFace)
+transformers
+timm
+# torch / torchvision installed separately (see note above)
 
-# Bundle adjustment / pose graph optimization (for the DIY visual odometry backend)
-g2o-python               # or: pip install gtsam
-# gtsam                  # alternative to g2o, pick one
-
-# Optional: 3D visualization / debugging
-rerun-sdk                # trajectory + point cloud + camera frustum visualization
-viser                    # lightweight 3D web viewer
-
-# Optional: semantics extension
-# segment-anything-2     # https://github.com/facebookresearch/sam2
-# ultralytics            # YOLO-World for open-vocabulary 2D detection
+# Optional visualization
+# rerun-sdk
